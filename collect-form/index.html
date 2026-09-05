@@ -1,31 +1,80 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>图书借阅登记</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>图书借阅登记</title>
 </head>
 <body>
-    <header>
-        <h1>图书馆图书借阅登记</h1>
-        <p>请同学们如实填写，方便图书馆管理。</p>
-    </header>
+   <header>
+      <h1>图书馆图书借阅登记</h1>
+      <p>请同学们如实填写，方便图书馆管理。</p>  </header>
 
-    <nav>
-        <a href="#intro">填写须知</a>
-        <a href="#borrow-form">借阅登记表</a>
-    </nav>
+ <nav>
+     <a href="#intro">填写须知</a>
+     <a href="#borrow-form">借阅登记表</a>
+  </nav>
 
-    <main>
-        <section id="intro">
-            <h2>填写须知</h2>
-            <p>1.一次最多借阅3本图书；3.借阅期限最长30天。</p>
+ <main>
+     <section id="intro">
+         <h2>填写须知</h2>
+         <p>1.一次最多借阅3本图书；3.借阅期限最长30天。</p>
         </section>
 
-        <section id="borrow-form">
-            <h2>借阅登记表</h2>
-            <p>表单下一步在这里完成</p>
-        </section>
+      <section id="borrow-form">
+    <h2>借阅登记表</h2>
+    <form action="#" method="get">
+        <p>
+            <label for="username">借阅人姓名 *</label>
+            <input type="text" id="username" name="username" required placeholder="请输入姓名">
+        </p>
+        <p>
+            <label for="stu-id">学号 *</label>
+            <input type="text" id="stu-id" name="stu-id" required placeholder="例如：2026001">
+        </p>
+        <p>
+            <label for="mail">联系邮箱 *</label>
+            <input type="email" id="mail" name="mail" required placeholder="xxx@qq.com">
+        </p>
+        <p>
+            <label for="borrow-days">计划借阅天数（1‑30）*</label>
+            <input type="number" id="borrow-days" name="borrow-days" min="1" max="30" required>
+        </p>
+        <p>
+            <label for="return-date">计划还书日期</label>
+            <input type="date" id="return-date" name="return-date">
+        </p>
+        <p>借阅人身份 *</p>
+        <p>
+            <label><input type="radio" name="identity" value="undergraduate" checked>本科生</label>
+            <label><input type="radio" name="identity" value="postgraduate">研究生</label>
+            <label><input type="radio" name="identity" value="teacher">教师</label>
+        </p>
+        <p>感兴趣的图书分类（可多选）</p>
+        <p>
+            <label><input type="checkbox" name="category" value="novel">小说</label>
+            <label><input type="checkbox" name="category" value="tech">科技</label>
+            <label><input type="checkbox" name="category" value="literature">文学</label>
+        </p>
+        <p>
+            <label for="book-name">选择借阅图书 *</label>
+            <select id="book-name" name="book-name" required>
+                <option value="">--请选择图书--</option>
+                <option value="book1">计算机网络</option>
+                <option value="book2">数据结构与算法</option>
+                <option value="book3">现代操作系统</option>
+            </select>
+        </p>
+        <p>
+            <label for="remark">备注信息</label>
+            <textarea id="remark" name="remark" rows="4" maxlength="150" placeholder="特殊需求，最多150字"></textarea>
+        </p>
+        <p>
+            <button type="submit">提交借阅申请</button>
+        </p>
+    </form>
+</section>
+
     </main>
 
     <footer>
