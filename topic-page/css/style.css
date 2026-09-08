@@ -7,8 +7,6 @@
 body {
     background-color: #f3f4f6;
 }
-
-/* Flex导航布局 */
 nav {
     background-color: #34495e;
 }
@@ -37,7 +35,6 @@ nav {
     text-decoration: none;
 }
 
-/* 介绍区块 */
 .section-intro {
     max-width: 1100px;
     margin: 36px auto;
@@ -49,8 +46,6 @@ nav {
     margin-bottom: 8px;
     color: #2c3e50;
 }
-
-/* Grid卡片墙布局 */
 .card-wrap {
     max-width: 1100px;
     margin: 0 auto 50px;
@@ -77,10 +72,25 @@ nav {
     display: block;
 }
 
-/* 页脚 */
+
 footer {
     background-color: #34495e;
     color: #ddd;
     text-align: center;
     padding: 16px;
+}
+
+@media screen and (max-width: 900px) {
+    .card-wrap {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width: 576px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .card-wrap {
+        grid-template-columns: 1fr;
+    }
 }
