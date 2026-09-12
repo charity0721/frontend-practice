@@ -18,3 +18,20 @@ const validList = cleanBill(bills);
 console.log("清洗后账单：",validList);
 console.log("全部消费名称：",getNameList(validList));
 console.log("总花费：",calcTotal(validList));
+const getReport = list =>{
+    const data = cleanBill(list);
+    if(data.length === 0){
+        return "暂无有效消费记录";
+    }
+    return `有效消费${data.length}笔；消费项目：${getNameList(data).join('、')}；合计花费：${calcTotal(data)} 元`;
+};
+    const inputName = prompt("请输入消费名称");
+    const inputMoney = Number(prompt("输入金额"));
+    if(inputName && !isNaN(inputMoney)){
+        bills.push({name:inputName,money:inputMoney,type:"自定义"});
+    }
+    console.log(getReport(bills));
+}catch(err){
+    console.error("记账出错：",err.message);
+}
+
