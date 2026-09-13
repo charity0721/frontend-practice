@@ -1,5 +1,4 @@
 const state = { data: null, range: 'all' };
-
 const loadData = async () => {
   $('#status').text('加载中...').show();
   try {
@@ -15,23 +14,20 @@ const loadData = async () => {
     state.data = data;
     $('#sub-title').text(data.title + ' · ' + data.source);
     $('#status').hide();
-    renderCards(data);
+    renderAll();
   } catch (error) {
     $('#status').text('加载失败：' + error.message).show();
   }
 };
-
 const average = (numbers) => {
   const total = numbers.reduce((sum, n) => sum + n, 0);
   return Math.round(total / numbers.length * 10) / 10;
 };
-
 const rainiest = (data) => {
   const max = Math.max(...data.rainfall);
   const index = data.rainfall.indexOf(max);
   return { month: data.months[index], value: max };
 };
-
 const renderCards = (data) => {
   const wetMonth = rainiest(data);
   const cards = [
@@ -54,5 +50,54 @@ const renderCards = (data) => {
     `);
   });
 };
+
+let barChart = null;
+const renderBarChart = (data) => {
+  if (barChart === null) {
+    barChart = echarts.init(document.querySelector('#bar-chart'));
+  }
+  barChart.setOption({
+    title: { text: '各月降水量（单位：mm）', left: 'center' },
+    tooltip: { trigger: 'axis' },
+    xAxis: { data: data.months, name: '月份' },
+    yAxis: { name: '降水量 (mm)' },
+    series: [{
+      name: '降水量',
+      type: 'bar',
+      data: data.rainfall,
+      itemStyle: { color: '#3d7ebd' }
+    }]
+  }, true);
+};
+
+const filterData = (data, range) => {
+  const from = range === 'h2' ? 4 : 0;
+  const to = range === 'h1' ? 4 : data.months.length;
+  return {
+    months: data.months.slice(from, to),
+    temperature: {
+      high: data.temperature.high.slice(from, to),
+      low: data.temperature.low.slice(from, to)
+    },
+    rainfall: data.rainfall.slice(from, to)
+  };
+};
+
+const renderAll = () => {
+  const view = filterData(state.data, state.range);
+  renderCards(view);
+  renderBarChart(view);
+};
+
+window.addEventListener('resize', () => {
+  if (barChart) barChart.resize();
+});
+
+$('#range-buttons').on('click', 'button', function () {
+  state.range = $(this).data('range');
+  $(this).addClass('active').siblings().removeClass('active');
+  $('#range-tip').text('已显示：' + $(this).text());
+  renderAll();
+});
 
 loadData();
