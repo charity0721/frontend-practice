@@ -1,6 +1,6 @@
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x16213e);
-scene.fog = new THREE.Fog(0x16213e, 8, 20);
+scene.fog = new THREE.Fog(0x16213e, 8, 20);         // 雾：远处渐隐，出氛围
 
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
 camera.position.set(4, 3, 6);
@@ -17,7 +17,6 @@ const dir = new THREE.DirectionalLight(0xffffff, 0.8);
 dir.position.set(3, 6, 4);
 scene.add(dir);
 
-// =========本次新增开始：展台底座、展品Group、动画=========
 // 展台底座：大圆柱
 const stage = new THREE.Mesh(
   new THREE.CylinderGeometry(2.2, 2.4, 0.3, 48),
@@ -26,8 +25,8 @@ const stage = new THREE.Mesh(
 stage.position.y = -0.15;
 scene.add(stage);
 
-// 展品组：Group容器
-const items = new THREE.Group();
+// 展品组：3个不同几何体摆一圈
+const items = new THREE.Group();                    // 组：整体旋转就转组
 const geos = [
   new THREE.BoxGeometry(0.8, 0.8, 0.8),
   new THREE.SphereGeometry(0.5, 32, 32),
@@ -42,14 +41,13 @@ geos.forEach((geo, i) => {
 });
 scene.add(items);
 
-// 动画循环
+// 动画：展台整体缓转
 const animate = () => {
   requestAnimationFrame(animate);
   items.rotation.y += 0.005;
   renderer.render(scene, camera);
 };
 animate();
-// =========本次新增结束=========
 
 // 窗口适配
 window.addEventListener('resize', () => {
