@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>城市天气数据看板</title>
+  <link rel="icon" href="data:,">
+  <link href="libs/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .chart-box { height: 360px; }
+    #status { display: none; }
+    .source-note { font-size: 0.8rem; }
+  </style>
+</head>
+<body class="container py-4">
+  <header>
+    <h1 class="h3">城市天气数据看板</h1>
+    <p class="text-muted" id="sub-title">数据来源：课程自建示例数据</p>
+  </header>
+
+  <p id="status" class="alert alert-warning"></p>
+
+  <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+    <span class="text-muted small">查看范围：</span>
+    <div class="btn-group" id="range-buttons">
+      <button type="button" class="btn btn-outline-primary btn-sm active" data-range="all">全部 8 个月</button>
+      <button type="button" class="btn btn-outline-primary btn-sm" data-range="h1">1—4 月</button>
+      <button type="button" class="btn btn-outline-primary btn-sm" data-range="h2">5—8 月</button>
+    </div>
+    <span class="text-muted small" id="range-tip">已显示：全部 8 个月</span>
+  </div>
+
+  <section class="row g-3 mb-4" id="cards"></section>
+
+  <section class="row g-3">
+    <div class="col-lg-6">
+      <h2 class="h5">各月降水量（ECharts 柱状图）</h2>
+      <div id="bar-chart" class="chart-box"></div>
+      <p class="text-muted source-note">单位：mm；数据来源：课程自建示例数据（2026-09-13 整理）。</p>
+    </div>
+    <div class="col-lg-6">
+      <h2 class="h5">各月气温趋势（Chart.js 折线图）</h2>
+      <div class="chart-box"><canvas id="line-chart"></canvas></div>
+      <p class="text-muted source-note">单位：℃；数据来源：课程自建示例数据（2026-09-13 整理）。</p>
+    </div>
+  </section>
+
+  <script src="libs/jquery-3.7.1.min.js"></script>
+  <script src="libs/bootstrap.bundle.min.js"></script>
+  <script src="libs/echarts.min.js"></script>
+  <script src="libs/chart.umd.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
