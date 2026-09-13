@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>星球宇宙三维场景</title>
+  <style> body { margin: 0; } </style>
+</head>
+<body>
+  <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script>
+// ========== 基础环境：场景、相机、渲染器 ==========
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x050520);
+scene.fog = new THREE.Fog(0x050520, 20, 60);
+
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 200);
+camera.position.set(0, 4, 12);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+
+// 光源
+scene.add(new THREE.AmbientLight(0xffffff, 0.25));
+const sunLight = new THREE.DirectionalLight(0xfffbd0, 1);
+sunLight.position.set(8, 5, 3);
+scene.add(sunLight);
+
+// 窗口大小适配
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// 空渲染循环，暂时没有物体
+const animate = () => {
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+};
+animate();
+  </script>
+</body>
+</html>

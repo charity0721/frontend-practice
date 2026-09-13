@@ -44,7 +44,10 @@ scene.add(items);
 // 动画：展台整体缓转
 const animate = () => {
   requestAnimationFrame(animate);
-  items.rotation.y += 0.005;
+  // 循环所有子mesh，逐个旋转
+  items.children.forEach(mesh=>{
+    mesh.rotation.y += 0.005;
+  })
   renderer.render(scene, camera);
 };
 animate();
