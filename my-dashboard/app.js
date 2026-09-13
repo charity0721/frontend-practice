@@ -70,6 +70,34 @@ const renderBarChart = (data) => {
   }, true);
 };
 
+let lineChart = null;
+const renderLineChart = (data) => {
+  if (lineChart !== null) {
+    lineChart.destroy();
+  }
+  const ctx = document.querySelector('#line-chart');
+  lineChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: data.months,
+      datasets: [
+        { label: '最高气温', data: data.temperature.high, borderWidth: 2, tension: 0.3 },
+        { label: '最低气温', data: data.temperature.low, borderWidth: 2, tension: 0.3 }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: { display: true, text: '各月气温趋势（单位：℃）' }
+      },
+      scales: {
+        y: { beginAtZero: true, title: { display: true, text: '气温 (℃)' } }
+      }
+    }
+  });
+};
+
 const filterData = (data, range) => {
   const from = range === 'h2' ? 4 : 0;
   const to = range === 'h1' ? 4 : data.months.length;
@@ -87,6 +115,7 @@ const renderAll = () => {
   const view = filterData(state.data, state.range);
   renderCards(view);
   renderBarChart(view);
+  renderLineChart(view);
 };
 
 window.addEventListener('resize', () => {
