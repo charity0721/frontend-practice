@@ -28,7 +28,6 @@ const sunLight = new THREE.DirectionalLight(0xfffbd0, 1);
 sunLight.position.set(8, 5, 3);
 scene.add(sunLight);
 
-// =========本次新增：全部主体物体，静止=========
 // 恒星
 const sunMesh = new THREE.Mesh(
   new THREE.SphereGeometry(1.2,32,32),
@@ -63,7 +62,6 @@ const asteroid = new THREE.Mesh(
 );
 asteroid.position.set(-5, 2, -2);
 scene.add(asteroid);
-// =============================================
 
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
@@ -71,10 +69,13 @@ window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-// 渲染循环，物体静止
+// =========本次新增动画：公转、自转=========
 const animate = () => {
   requestAnimationFrame(animate);
   controls.update();
+  planetGroup.rotation.y += 0.004; // 行星组公转
+  sunMesh.rotation.y += 0.006;    // 恒星自转
+  asteroid.rotation.y += 0.01;    // 小行星自转
   renderer.render(scene, camera);
 };
 animate();
