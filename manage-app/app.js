@@ -4,20 +4,34 @@ const author = document.querySelector('#author');
 const score = document.querySelector('#score');
 const tip = document.querySelector('#tip');
 const listWrap = document.querySelector('#listWrap');
+const searchInput = document.querySelector('#searchInput');
 
-let bookList = [];
+//读取本地存储
+let bookList = JSON.parse(localStorage.getItem('books') || '[]');
+
+//保存函数
+function saveData(){
+    localStorage.setItem('books',JSON.stringify(bookList));
+}
 
 function render(){
     listWrap.innerHTML = '';
-    bookList.forEach((item,idx)=>{
+    //获取搜索关键词
+    const keyword = searchInput.value.trim().toLowerCase();
+    //筛选
+    let showArr = bookList;
+    if(keyword){
+        showArr = bookList.filter(bk=>bk.name.toLowerCase().includes(keyword));
+    }
+    showArr.forEach((item,idx)=>{
         const div = document.createElement('div');
         div.className = "item";
         div.textContent = `书名：${item.name}｜作者：${item.author}｜评分：${item.score}分 `;
-        //删除按钮
         const delBtn = document.createElement('button');
         delBtn.textContent="删除";
         delBtn.onclick = ()=>{
             bookList.splice(idx,1);
+            saveData();
             render();
         }
         div.appendChild(delBtn);
@@ -25,6 +39,7 @@ function render(){
     })
 }
 
+//新增
 addForm.addEventListener('submit',e=>{
     e.preventDefault();
     tip.textContent = '';
@@ -40,10 +55,14 @@ addForm.addEventListener('submit',e=>{
         author:autVal,
         score:scoVal
     })
+    saveData();
     bookName.value='';
     author.value='';
     score.value='';
     render();
 })
+
+//搜索监听
+searchInput.oninput = render;
 
 render();
