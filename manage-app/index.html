@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图书收藏管理</title>
+    <style>
+        .item{padding:8px 0;border-bottom:1px solid #ccc;}
+    </style>
+</head>
+<body>
+    <h2>图书收藏登记</h2>
+    <!-- 添加表单 -->
+    <form id="addForm">
+        <p>书名：<input type="text" id="bookName"></p>
+        <p>作者：<input type="text" id="author"></p>
+        <p>评分：<input type="number" id="score" min="1" max="10"></p>
+        <button>保存图书</button>
+    </form>
+    <div id="tip"></div>
+
+    <!-- 查询框 -->
+    <div>
+        <p>搜索书名：<input id="searchInput" placeholder="输入书名检索"></p>
+    </div>
+
+    <h3>图书列表</h3>
+    <div id="listWrap"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
