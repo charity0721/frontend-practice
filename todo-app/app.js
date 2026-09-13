@@ -5,7 +5,11 @@ const list = document.querySelector('#task-list');
 const filters = document.querySelector('.filters');
 
 let currentFilter = 'all';
-let tasks = [];
+let tasks = JSON.parse(localStorage.getItem('taskData')) || [];
+
+const saveData = ()=>{
+    localStorage.setItem('taskData',JSON.stringify(tasks));
+}
 
 const render = () => {
     list.innerHTML = '';
@@ -25,6 +29,7 @@ const render = () => {
         if(task.done) li.classList.add('done');
         li.addEventListener('click',()=>{
             task.done = !task.done;
+            saveData();
             render();
         })
         list.appendChild(li);
@@ -39,6 +44,7 @@ form.addEventListener('submit', e=>{
         return;
     }
     tasks.push({text:text,done:false});
+    saveData();
     tip.textContent = '';
     input.value = '';
     render();
