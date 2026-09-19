@@ -50,11 +50,8 @@ function renderRooms() {
     col.className = 'col-md-6 col-lg-4';
     col.innerHTML = `
       <div class="card h-100 shadow-sm">
-        <div class="card-body d-flex justify-content-between align-items-start">
-          <div>
-            <h6 class="card-title mb-1">${room.name}</h6>
-            <p class="card-text text-muted small mb-0">${room.floor} 楼</p>
-          </div>
+        <div class="card-body d-flex justify-content-between align-items-center">
+          <h6 class="card-title mb-0">${room.name}</h6>
           <span class="badge ${statusBadge[room.status]}">${room.status}</span>
         </div>
       </div>
