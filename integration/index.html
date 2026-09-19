@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>迷你版校园信息中心</title>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 自定义样式 -->
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+
+  <!-- ===== 导航栏：首页 / 自习室 / 统计 / 校园三维 四个入口 ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#home">🏫 校园信息中心</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false" aria-label="切换导航">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#home">首页</a></li>
+          <li class="nav-item"><a class="nav-link" href="#study">自习室</a></li>
+          <li class="nav-item"><a class="nav-link" href="#stats">统计</a></li>
+          <li class="nav-item"><a class="nav-link" href="three-d/scene.html">校园三维</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+
+    <!-- ===== 首页：标题 + 卡片区块 ===== -->
+    <section id="home" class="mb-5">
+      <div class="p-4 p-md-5 mb-4 rounded-3 bg-light text-center">
+        <h1 class="display-6 fw-bold">迷你版校园公共信息与数据展示中心</h1>
+        <p class="lead text-muted mb-0">首页 · 自习室查询 · 使用统计 · 校园三维，四大模块整合骨架</p>
+      </div>
+
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">🏠 首页</h5>
+              <p class="card-text text-muted">导航入口与各模块导航卡片，作为整个信息中心的入口。</p>
+              <a href="#home" class="btn btn-sm btn-outline-primary">进入</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">📚 自习室查询</h5>
+              <p class="card-text text-muted">按楼层 / 开放状态筛选自习室列表，即时生效的筛选交互。</p>
+              <a href="#study" class="btn btn-sm btn-outline-primary">进入</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">📊 使用统计</h5>
+              <p class="card-text text-muted">加载 data.json，用图表展示各自习室使用量。</p>
+              <a href="#stats" class="btn btn-sm btn-outline-primary">进入</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">🗺️ 校园三维</h5>
+              <p class="card-text text-muted">Three.js 校园三维导览场景，独立页面，可返回首页。</p>
+              <a href="three-d/scene.html" class="btn btn-sm btn-outline-primary">进入</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 各模块占位区域：明确位置，后续步骤填充 ===== -->
+    <section id="study" class="module-placeholder mb-5">
+      <h2 class="h4 border-start border-4 border-primary ps-3">自习室查询（第二步实现）</h2>
+      <p class="text-muted">占位：此处将复用课堂五的筛选模式，按楼层 / 开放状态过滤自习室列表，数据写死在 JS 数组中。</p>
+    </section>
+
+    <section id="stats" class="module-placeholder mb-5">
+      <h2 class="h4 border-start border-4 border-primary ps-3">使用统计（第二步实现）</h2>
+      <p class="text-muted">占位：此处将复用课堂六的图表代码，加载 data.json 渲染各自习室使用量柱状图。</p>
+    </section>
+
+    <section id="three-d" class="module-placeholder mb-5">
+      <h2 class="h4 border-start border-4 border-primary ps-3">校园三维导览（第三步实现）</h2>
+      <p class="text-muted">占位：独立页面 three-d/scene.html，把课堂七的场景搬进来作为“校园三维导览”，从首页导航可进入并返回。</p>
+    </section>
+
+  </main>
+
+  <footer class="bg-light text-center text-muted py-3">
+    <div class="container">迷你版校园信息中心 · 课堂案例复现</div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

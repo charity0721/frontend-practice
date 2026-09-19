@@ -1,0 +1,46 @@
+/* 迷你版校园信息中心 —— 自定义样式 */
+html {
+  scroll-padding-top: 72px; /* 锚点跳转时避开固定导航栏 */
+}
+
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* 导航栏品牌 */
+.navbar-brand {
+  font-weight: 600;
+}
+
+/* 首页卡片 */
+.card {
+  border: none;
+  border-radius: 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 模块占位区域 */
+.module-placeholder {
+  background: #ffffff;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.04);
+}
+
+.module-placeholder h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+/* 手机端小屏适配 */
+@media (max-width: 575.98px) {
+  .display-6 {
+    font-size: 1.6rem;
+  }
+}
