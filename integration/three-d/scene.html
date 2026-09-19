@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>校园三维导览</title>
+  <style>
+    body { margin: 0; overflow: hidden; background: #050520; }
+    /* 顶部浮动栏：返回首页 + 标题说明 */
+    #topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: rgba(0, 0, 0, 0.45);
+      color: #fff;
+      z-index: 10;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+    #topbar .title { font-size: 16px; font-weight: 600; }
+    #topbar .tip { font-size: 12px; opacity: 0.75; margin-left: 12px; }
+    #backBtn {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #3d7ebd;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    #backBtn:hover { background: #2f6aa3; }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部栏：返回首页 + 标题 -->
+  <div id="topbar">
+    <div>
+      <span class="title">🗺️ 校园三维导览</span>
+      <span class="tip">拖拽旋转 · 滚轮缩放（基于课堂七场景）</span>
+    </div>
+    <a id="backBtn" href="../index.html">← 返回首页</a>
+  </div>
+
+  <script src="libs/three.min.js"></script>
+  <script src="libs/OrbitControls.js"></script>
+  <script>
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x050520);
+    scene.fog = new THREE.Fog(0x050520, 20, 60);
+
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 200);
+    camera.position.set(0, 4, 12);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.25));
+    const sunLight = new THREE.DirectionalLight(0xfffbd0, 1);
+    sunLight.position.set(8, 5, 3);
+    scene.add(sunLight);
+
+    // 恒星（中心教学楼）
+    const sunMesh = new THREE.Mesh(
+      new THREE.SphereGeometry(1.2, 32, 32),
+      new THREE.MeshStandardMaterial({ color: 0xffdd60, emissive: 0xffdd60, emissiveIntensity: 0.3 })
+    );
+    scene.add(sunMesh);
+
+    // 行星公转组
+    const planetGroup = new THREE.Group();
+    scene.add(planetGroup);
+
+    // 岩石行星
+    const planet1 = new THREE.Mesh(
+      new THREE.SphereGeometry(0.6, 32, 32),
+      new THREE.MeshStandardMaterial({ color: 0x8d6e63 })
+    );
+    planet1.position.x = 4.5;
+    planetGroup.add(planet1);
+
+    // 环状行星
+    const ringPlanet = new THREE.Mesh(
+      new THREE.TorusGeometry(0.9, 0.22, 16, 48),
+      new THREE.MeshStandardMaterial({ color: 0x90caf9 })
+    );
+    ringPlanet.position.x = 7;
+    planetGroup.add(ringPlanet);
+
+    // 小行星
+    const asteroid = new THREE.Mesh(
+      new THREE.BoxGeometry(0.45, 0.45, 0.45),
+      new THREE.MeshStandardMaterial({ color: 0x78909c })
+    );
+    asteroid.position.set(-5, 2, -2);
+    scene.add(asteroid);
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // 动画：公转、自转
+    const animate = () => {
+      requestAnimationFrame(animate);
+      controls.update();
+      planetGroup.rotation.y += 0.004;
+      sunMesh.rotation.y += 0.006;
+      asteroid.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    };
+    animate();
+  </script>
+</body>
+</html>
