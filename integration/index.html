@@ -79,17 +79,49 @@
       </div>
     </section>
 
-    <!-- ===== 各模块占位区域：明确位置，后续步骤填充 ===== -->
-    <section id="study" class="module-placeholder mb-5">
-      <h2 class="h4 border-start border-4 border-primary ps-3">自习室查询（第二步实现）</h2>
-      <p class="text-muted">占位：此处将复用课堂五的筛选模式，按楼层 / 开放状态过滤自习室列表，数据写死在 JS 数组中。</p>
+    <!-- ===== 自习室查询：按楼层 / 开放状态筛选，即时生效 ===== -->
+    <section id="study" class="mb-5">
+      <h2 class="h4 border-start border-4 border-primary ps-3 mb-3">自习室查询</h2>
+
+      <!-- 筛选条件 -->
+      <div class="row g-2 align-items-end mb-3">
+        <div class="col-auto">
+          <label for="floorFilter" class="form-label small text-muted mb-1">楼层</label>
+          <select id="floorFilter" class="form-select form-select-sm">
+            <option value="all">全部楼层</option>
+            <option value="1">1 楼</option>
+            <option value="2">2 楼</option>
+            <option value="3">3 楼</option>
+            <option value="4">4 楼</option>
+          </select>
+        </div>
+        <div class="col-auto">
+          <label for="statusFilter" class="form-label small text-muted mb-1">开放状态</label>
+          <select id="statusFilter" class="form-select form-select-sm">
+            <option value="all">全部状态</option>
+            <option value="开放">开放</option>
+            <option value="满座">满座</option>
+            <option value="维修">维修</option>
+          </select>
+        </div>
+        <div class="col-auto ms-auto">
+          <span id="roomCount" class="text-muted small">共 8 间</span>
+        </div>
+      </div>
+
+      <!-- 自习室卡片列表 -->
+      <div class="row g-3" id="roomList"></div>
     </section>
 
-    <section id="stats" class="module-placeholder mb-5">
-      <h2 class="h4 border-start border-4 border-primary ps-3">使用统计（第二步实现）</h2>
-      <p class="text-muted">占位：此处将复用课堂六的图表代码，加载 data.json 渲染各自习室使用量柱状图。</p>
+    <!-- ===== 使用统计：加载 data.json，ECharts 柱状图 ===== -->
+    <section id="stats" class="mb-5">
+      <h2 class="h4 border-start border-4 border-primary ps-3 mb-3">使用统计</h2>
+      <p id="chartStatus" class="text-muted small mb-2">数据加载中…</p>
+      <div id="usageChart" style="height:380px;"></div>
+      <p class="text-muted small mt-2">单位：人次/日；数据来源：课程自建示例数据（2026-09-19 整理）。</p>
     </section>
 
+    <!-- ===== 校园三维导览（第三步实现）===== -->
     <section id="three-d" class="module-placeholder mb-5">
       <h2 class="h4 border-start border-4 border-primary ps-3">校园三维导览（第三步实现）</h2>
       <p class="text-muted">占位：独立页面 three-d/scene.html，把课堂七的场景搬进来作为“校园三维导览”，从首页导航可进入并返回。</p>
@@ -103,5 +135,9 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- ECharts（本地库，断网可用） -->
+  <script src="libs/echarts.min.js"></script>
+  <!-- 本页脚本：自习室筛选 + 使用统计图表 -->
+  <script src="script.js"></script>
 </body>
 </html>
