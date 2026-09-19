@@ -7,7 +7,7 @@
 - **首页**：Bootstrap 导航栏 + 四张模块卡片（响应式）
 - **自习室查询**：按楼层 / 开放状态即时筛选（数据写死在 `script.js` 数组中）
 - **使用统计**：加载 `data.json`，用 ECharts 渲染各自习室每日使用量柱状图
-- **校园三维导览**：Three.js 场景（搬自课堂七），独立页面，可返回首页
+- **校园三维导览**：A-Frame 校园场景（搬自课堂七：教学楼、红旗、路灯），独立页面，可返回首页
 
 ## 运行方法
 
@@ -42,8 +42,7 @@ integration/
 └── three-d/
     ├── scene.html      # 校园三维导览页（含返回首页按钮）
     └── libs/
-        ├── three.min.js        # Three.js 本地库
-        └── OrbitControls.js     # 轨道控制器
+        └── aframe.min.js       # A-Frame 本地库
 ```
 
 ## 数据与资源来源
@@ -52,8 +51,8 @@ integration/
 - 使用量数据：课程自建示例数据（`data.json`，2026-09-19 整理）
 - **Bootstrap 5.3.3**：jsDelivr CDN
 - **ECharts**：Apache 开源协议（Apache-2.0），本地库
-- **Three.js r128**：MIT 协议，本地库
-- 三维场景：基于课堂七作业改造（星球宇宙场景 → 校园三维导览页）
+- **A-Frame**：MIT 协议，本地库
+- 三维场景：基于课堂七作业改造（A-Frame 校园场景：教学楼、红旗、路灯）
 
 ## 质量自查
 
