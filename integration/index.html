@@ -80,6 +80,10 @@
 
       <!-- 筛选条件 -->
       <div class="row g-2 align-items-end mb-3">
+        <div class="col-12 col-sm-auto">
+          <label for="searchInput" class="form-label small text-muted mb-1">搜索自习室</label>
+          <input type="text" id="searchInput" class="form-control form-control-sm" placeholder="输入名称，如 3楼自习室A">
+        </div>
         <div class="col-auto">
           <label for="floorFilter" class="form-label small text-muted mb-1">楼层</label>
           <select id="floorFilter" class="form-select form-select-sm">
@@ -106,14 +110,21 @@
 
       <!-- 自习室卡片列表 -->
       <div class="row g-3" id="roomList"></div>
+      <!-- 无匹配结果提示 -->
+      <p id="emptyTip" class="text-warning small d-none">未找到匹配的自习室，请尝试清空搜索或放宽筛选条件。</p>
     </section>
 
-    <!-- ===== 使用统计：加载 data.json，ECharts 柱状图 ===== -->
+    <!-- ===== 使用统计：加载 data.json，ECharts 柱状图 + Chart.js 折线图 ===== -->
     <section id="stats" class="mb-5">
       <h2 class="h4 border-start border-4 border-primary ps-3 mb-3">使用统计</h2>
       <p id="chartStatus" class="text-muted small mb-2">数据加载中…</p>
       <div id="usageChart" style="height:380px;"></div>
       <p class="text-muted small mt-2">单位：人次/日；数据来源：课程自建示例数据（2026-09-19 整理）。</p>
+
+      <h3 class="h6 mt-4 mb-2">各楼层一周使用趋势（Chart.js 折线图）</h3>
+      <p id="trendStatus" class="text-muted small mb-2">数据加载中…</p>
+      <div id="trendChart" style="height:320px;"></div>
+      <p class="text-muted small mt-2">单位：人次；数据来源：课程自建示例数据（2026-09-19 整理）。</p>
     </section>
 
     <!-- ===== 校园三维导览 ===== -->
@@ -132,7 +143,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- ECharts（本地库，断网可用） -->
   <script src="libs/echarts.min.js"></script>
+  <!-- Chart.js（本地库，断网可用） -->
+  <script src="libs/chart.umd.js"></script>
   <!-- 本页脚本：自习室筛选 + 使用统计图表 -->
-  <script src="script.js"></script>
+  <script src="script.js?v=fix1"></script>
 </body>
 </html>

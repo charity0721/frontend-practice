@@ -6,7 +6,7 @@
 
 - **首页**：Bootstrap 导航栏 + 四张模块卡片（响应式）
 - **自习室查询**：按楼层 / 开放状态即时筛选（数据写死在 `script.js` 数组中）
-- **使用统计**：加载 `data.json`，用 ECharts 渲染各自习室每日使用量柱状图
+- **使用统计**：加载 `data.json`，用 ECharts 渲染各自习室每日使用量柱状图，用 Chart.js 渲染各楼层一周使用趋势折线图
 - **校园三维导览**：A-Frame 校园场景（搬自课堂七：教学楼、红旗、路灯），独立页面，可返回首页
 
 ## 运行方法
@@ -35,10 +35,11 @@ integration/
 ├── index.html          # 统一入口（首页：导航 + 卡片 + 自习室筛选 + 统计图表）
 ├── css/
 │   └── custom.css      # 自定义样式（在 Bootstrap 之后引入）
-├── script.js           # 交互逻辑：自习室筛选 + ECharts 图表加载
-├── data.json          # 统计数据：各自习室每日使用量
+├── script.js           # 交互逻辑：自习室筛选 + ECharts/Chart.js 图表加载
+├── data.json          # 统计数据：各自习室每日使用量 + 各楼层一周使用趋势
 ├── libs/
-│   └── echarts.min.js  # ECharts 本地库（断网可用）
+│   ├── echarts.min.js  # ECharts 本地库（断网可用）
+│   └── chart.umd.js    # Chart.js 本地库（断网可用）
 └── three-d/
     ├── scene.html      # 校园三维导览页（含返回首页按钮）
     └── libs/
@@ -51,6 +52,7 @@ integration/
 - 使用量数据：课程自建示例数据（`data.json`，2026-09-19 整理）
 - **Bootstrap 5.3.3**：jsDelivr CDN
 - **ECharts**：Apache 开源协议（Apache-2.0），本地库
+- **Chart.js**：MIT 协议，本地库
 - **A-Frame**：MIT 协议，本地库
 - 三维场景：基于课堂七作业改造（A-Frame 校园场景：教学楼、红旗、路灯）
 
