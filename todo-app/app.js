@@ -5,11 +5,10 @@ const list = document.querySelector('#task-list');
 const filters = document.querySelector('.filters');
 
 let currentFilter = 'all';
-let tasks = JSON.parse(localStorage.getItem('taskData')) || [];
+// 和课件完全一致
+let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
 
-const saveData = ()=>{
-    localStorage.setItem('taskData',JSON.stringify(tasks));
-}
+const save = () => localStorage.setItem('tasks', JSON.stringify(tasks));
 
 const render = () => {
     list.innerHTML = '';
@@ -29,7 +28,7 @@ const render = () => {
         if(task.done) li.classList.add('done');
         li.addEventListener('click',()=>{
             task.done = !task.done;
-            saveData();
+            save();
             render();
         })
         list.appendChild(li);
@@ -44,7 +43,7 @@ form.addEventListener('submit', e=>{
         return;
     }
     tasks.push({text:text,done:false});
-    saveData();
+    save();
     tip.textContent = '';
     input.value = '';
     render();

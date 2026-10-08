@@ -42,7 +42,7 @@ function renderTasks() {
     delBtn.className = 'btn btn-sm btn-outline-danger';
     delBtn.textContent = '删除';
     delBtn.onclick = () => {
-      taskList.splice(idx, 1);
+      taskList.splice(taskList.indexOf(item), 1);
       saveData();
       renderTasks();
     };

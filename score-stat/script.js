@@ -1,12 +1,4 @@
-const scores = [
-  { name: '李四', score: 92 },
-  { name: '王五', score: 45 },
-  { name: '赵六', score: 77 },
-  { name: '孙七', score: 59 },
-  { name: '周八', score: 88 },
-  { name: '吴九', score: 105 },  
-  { name: '郑十', score: -3 }     
-];
+const scores = [];
 console.table(scores);
 const cleanScores = (list) => list.filter(s => s.score >= 0 && s.score <= 100);
 const average = (list) => {

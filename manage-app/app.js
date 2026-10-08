@@ -30,7 +30,7 @@ function render(){
         const delBtn = document.createElement('button');
         delBtn.textContent="删除";
         delBtn.onclick = ()=>{
-            bookList.splice(idx,1);
+            bookList.splice(bookList.indexOf(item),1);
             saveData();
             render();
         }
@@ -48,6 +48,10 @@ addForm.addEventListener('submit',e=>{
     const scoVal = Number(score.value);
     if(!nameVal || !autVal){
         tip.textContent = "书名、作者不能为空！";
+        return;
+    }
+    if(!score.value || isNaN(scoVal) || scoVal < 1 || scoVal > 10){
+        tip.textContent = "评分需为1-10的数字！";
         return;
     }
     bookList.push({
